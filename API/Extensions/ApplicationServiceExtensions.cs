@@ -7,7 +7,7 @@ namespace API.Extensions;
 
 public static class ApplicationServiceExtensions
 {
-    public static IServiceCollection AddApplicationService(this IServiceCollection services, 
+    public static IServiceCollection AddApplicationService(this IServiceCollection services,
         IConfiguration config)
     {
         services.AddDbContext<DataContext>(opt =>
@@ -16,7 +16,9 @@ public static class ApplicationServiceExtensions
         });
         services.AddCors();
         services.AddScoped<ITokenservice, TokenService>();
-        
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         return services;
     }
 }
